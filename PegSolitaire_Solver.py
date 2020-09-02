@@ -21,34 +21,31 @@ class PegSolitaireSolver:
             print()
         print()
     
+    def update_move(self,cur_move, x1, y1,x2,y2):
+        cur_move[1][0]=x1
+        cur_move[1][1]=y1
+        cur_move[2][0]=x2
+        cur_move[2][1]=y2
+
+        return cur_move
+
+    
     def next_move(self, row, col, dir):
         cur_move=[[0,0],[0,0],[0,0]]
         cur_move[0][0]=row
         cur_move[0][1]=col
 
         if dir=="up":
-            cur_move[1][0]=row+1
-            cur_move[1][1]=col
-            cur_move[2][0]=row+2
-            cur_move[2][1]=col
+            cur_move=self.update_move(cur_move, x1=row+1, x2=row+2, y1=col, y2=col)
     
         elif dir=="down":
-            cur_move[1][0]=row-1
-            cur_move[1][1]=col
-            cur_move[2][0]=row-2
-            cur_move[2][1]=col
+            cur_move=self.update_move(cur_move, x1=row-1, x2=row-2, y1=col, y2=col)
         
         elif dir=="right":
-            cur_move[1][0]=row
-            cur_move[1][1]=col+1
-            cur_move[2][0]=row
-            cur_move[2][1]=col+2
+            cur_move=self.update_move(cur_move, x1=row, x2=row, y1=col+1, y2=col+2)
 
         else:
-            cur_move[1][0]=row
-            cur_move[1][1]=col-1
-            cur_move[2][0]=row
-            cur_move[2][1]=col-2
+            cur_move=self.update_move(cur_move, x1=row, x2=row, y1=col-1, y2=col-2)
         
         return cur_move
     
