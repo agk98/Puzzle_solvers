@@ -35,10 +35,10 @@ class PegSolitaireSolver:
         cur_move[0][0]=row
         cur_move[0][1]=col
 
-        if dir=="up":
+        if dir=="down":
             cur_move=self.update_move(cur_move, x1=row+1, x2=row+2, y1=col, y2=col)
     
-        elif dir=="down":
+        elif dir=="up":
             cur_move=self.update_move(cur_move, x1=row-1, x2=row-2, y1=col, y2=col)
         
         elif dir=="right":
@@ -80,12 +80,15 @@ class PegSolitaireSolver:
         else:
             for i in range(0, self.length):
                 for j in range(0, self.height):
+                    if (j==0 or j==1 or j==5 or j==6) and (i==0 or i==1 or i==5 or i==6):
+                       continue 
                     for k in range(0, len(self.directions)):
                         move=self.next_move(j,i,self.directions[k])
                         if(self.is_legal(move)):
                             self.make_move(move)
                             # self.print_board()
                             if self.find_solution()==True:
+                                print("Move ({},{}); Direction: {}".format(j,i,self.directions[k]))
                                 return True
                             
                             self.undo_move(move)

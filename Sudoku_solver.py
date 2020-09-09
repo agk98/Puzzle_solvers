@@ -70,5 +70,6 @@ def solving(board):
     return False
 
 print_board(board)
+print("\nSolving the board...\n\n")
 solving(board)
 print_board(board)
